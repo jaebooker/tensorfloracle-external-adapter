@@ -26,6 +26,11 @@ app.post('/', (req, res) => {
   request.open('GET', 'https://ipfs.infura.io:5001/api/v0/object/stat?arg=hash', true)
   request.onload = function() {
     // Begin accessing JSON data here
+    var data = JSON.parse(this.response)
+
+    data.forEach(model => {
+      console.log(model)
+    })
   }
   // Send request
   request.send()
