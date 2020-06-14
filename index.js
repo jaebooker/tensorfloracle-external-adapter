@@ -16,6 +16,21 @@ const customParams = {
   quote: ['address?'],
   endpoint: false
 }
+const processData = (input, callback) == {
+  var spawn = require('child_process').spawn,
+    py = spawn('python', ['keras.py']),
+    data = [1,2,3,4,5,6,7,8,9],
+    dataString = '';
+
+  py.stdout.on('data', function(data){
+      dataString += data.toString();
+    });
+  py.stdout.on('end', function(){
+      console.log('Sum of numbers=',dataString);
+    });
+  py.stdin.write(JSON.stringify(data));
+  py.stdin.end();
+}
 
 const createRequest = (input, callback) => {
   // The Validator helps you validate the Chainlink request data
@@ -35,6 +50,20 @@ const createRequest = (input, callback) => {
     url,
     params
   }
+
+  // Open a new connection, using the GET request on the URL endpoint
+  request.open('GET', 'https://ipfs.infura.io:5001/api/v0/object/stat?arg=hash', true)
+  request.onload = function() {
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response)
+
+    data.forEach(model => {
+      console.log(model)
+    })
+  }
+  // Send request
+  request.send()
+  console.log('POST Data: ', req.body)
 
   // The Requester allows API calls be retry in case of timeout
   // or connection failure
