@@ -12,8 +12,8 @@ const customError = (data) => {
 // with a Boolean value indicating whether or not they
 // should be required.
 const customParams = {
-  base: ['base', 'from', 'coin'],
-  quote: ['quote', 'to', 'market'],
+  base: ['train_hash', 'test_hash'],
+  quote: ['address?'],
   endpoint: false
 }
 

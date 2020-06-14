@@ -24,8 +24,8 @@ rm -rf .git
 
 ## Input Params
 
-- `base`, `from`, or `coin`: The symbol of the currency to query
-- `quote`, `to`, or `market`: The symbol of the currency to convert to
+- `train_hash`: An array of testing models submitted
+- `test_hash`: the IPFS address for the testing model
 
 ## Output
 
